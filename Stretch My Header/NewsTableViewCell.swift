@@ -12,18 +12,25 @@ class NewsTableViewCell: UITableViewCell {
     
     // MARK: Properties
     
-    var category: String?
-    var headline: String?
-
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
+    @IBOutlet weak var categoryLabel: UILabel!
+    @IBOutlet weak var headlineLabel: UILabel!
+    
+    var newsItem: NewsItem? {
+        
+        didSet {
+            
+            if let item = newsItem {
+                
+                categoryLabel.text = item.category.rawValue
+                categoryLabel.textColor = item.category.getColor()
+                headlineLabel.text = item.headline
+                
+            } else {
+                
+                categoryLabel.text = nil
+                headlineLabel.text = nil
+            }
+        }
+        
     }
-
-    override func setSelected(selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
-
 }
